@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — mobile theme &amp; accent (WP7 Metro)</title>
+<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../assets/mockup.css">
+</head>
+<body>
+<div class="ribbon">mockup · mobile-theme</div>
+
+<div class="device">
+  <div class="statusbar">
+    <span class="sig">▂▄▆</span><span class="sig">◌</span><span class="sig">▮</span>
+    <span class="clock" id="clock">--:--</span>
+  </div>
+
+  <div class="pagetitle">settings</div>
+  <div class="grouplabel">background</div>
+  <div class="choicegrid">
+    <div class="choice dark" id="c-dark">dark</div>
+    <div class="choice light" id="c-light">light</div>
+  </div>
+
+  <div class="grouplabel">accent colour</div>
+  <div class="swatchgrid" id="swatches"></div>
+  <p class="hint">The guide's ten system colours. Changes apply instantly, with no confirm dialog, and follow you across every mockup page.</p>
+
+  <div class="scroll-area"></div>
+
+  <div class="appbar">
+    <a class="ab-btn" href="../mobile-start/index.html"><i class="fas fa-home"></i></a>
+    <a class="ab-btn" href="../mobile-start/index.html"><i class="fas fa-arrow-left"></i></a>
+    <span class="ab-btn"><i class="fas fa-check"></i></span>
+    <span class="ab-btn ab-more"><i class="fas fa-ellipsis-h"></i></span>
+    <div class="ab-menu">
+      <a class="mi" href="../mobile-panorama/index.html"><i class="fas fa-images"></i> panorama hub</a>
+      <a class="mi" href="../desktop/index.html"><i class="fas fa-desktop"></i> desktop mockup (swiss)</a>
+      <span class="mi"><i class="fas fa-info-circle"></i> stored in localStorage — mockup only</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* the ten WP7 accent colours, straight from the guide */
+var ACCENTS = [
+  { name: 'blue',    hex: '#1BA1E2' },
+  { name: 'orange',  hex: '#F09609' },
+  { name: 'green',   hex: '#339933' },
+  { name: 'red',     hex: '#E51400' },
+  { name: 'teal',    hex: '#00ABA9' },
+  { name: 'pink',    hex: '#E671B8' },
+  { name: 'purple',  hex: '#A200FF' },
+  { name: 'brown',   hex: '#996600' },
+  { name: 'lime',    hex: '#8CBF26' },
+  { name: 'magenta', hex: '#FF0097' }
+];
+var grid = document.getElementById('swatches');
+ACCENTS.forEach(function (a) {
+  var s = document.createElement('div');
+  s.className = 'swatch';
+  s.style.background = a.hex;
+  s.title = a.name + ' ' + a.hex;
+  s.innerHTML = '<span class="check">✓</span>';
+  s.addEventListener('click', function () {
+    document.documentElement.style.setProperty('--accent', a.hex);
+    try { localStorage.setItem('wp7-accent', a.hex); } catch (e) {}
+    refresh();
+  });
+  grid.appendChild(s);
+});
+function refresh() {
+  var acc = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+  var nodes = grid.children;
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].classList.toggle('sel', ACCENTS[i].hex.toUpperCase() === acc.toUpperCase());
+  }
+  var dark = document.getElementById('c-dark'), light = document.getElementById('c-light');
+  dark.classList.toggle('sel', document.documentElement.getAttribute('data-theme') !== 'light');
+  light.classList.toggle('sel', document.documentElement.getAttribute('data-theme') === 'light');
+}
+document.getElementById('c-dark').addEventListener('click', function () {
+  document.documentElement.removeAttribute('data-theme');
+  try { localStorage.setItem('wp7-theme', 'dark'); } catch (e) {}
+  refresh();
+});
+document.getElementById('c-light').addEventListener('click', function () {
+  document.documentElement.setAttribute('data-theme', 'light');
+  try { localStorage.setItem('wp7-theme', 'light'); } catch (e) {}
+  refresh();
+});
+refresh();
+</script>
+<script src="../assets/mockup.js"></script>
+</body>
+</html>

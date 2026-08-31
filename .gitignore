@@ -1,0 +1,5 @@
+node_modules/
+.dsh-tmp/
+test-results/
+playwright-report/
+.DS_Store

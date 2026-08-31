@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — mobile start screen (WP7 Metro)</title>
+<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../assets/mockup.css">
+</head>
+<body>
+<div class="ribbon">mockup · mobile-start</div>
+
+<div class="device">
+  <div class="statusbar">
+    <span class="sig">▂▄▆</span><span class="sig">◌</span><span class="sig">▮</span>
+    <span class="clock" id="clock">--:--</span>
+  </div>
+
+  <!-- START SCREEN: live tiles, accent counters, lowercase labels -->
+  <div class="scroll-area">
+    <div class="tilegrid">
+      <a class="tile wide" href="../mobile-panorama/index.html">
+        <span class="tphoto" style="background-image:url('../../images/pic01.jpg')"></span>
+        <span class="tshade"></span>
+        <span class="tlabel">about</span>
+      </a>
+      <a class="tile" href="../mobile-pivot/index.html">
+        <i class="fas fa-briefcase tic"></i>
+        <span class="tcount">3</span>
+        <span class="tlabel">work</span>
+      </a>
+      <a class="tile" href="../mobile-panorama/index.html">
+        <i class="fas fa-camera tic"></i>
+        <span class="tcount">12</span>
+        <span class="tlabel">photos</span>
+      </a>
+      <a class="tile" href="../mobile-panorama/index.html">
+        <i class="fas fa-music tic"></i>
+        <span class="tlabel">dance</span>
+      </a>
+      <a class="tile" href="../mobile-panorama/index.html">
+        <i class="fas fa-chart-bar tic"></i>
+        <span class="tlabel">data</span>
+      </a>
+      <a class="tile" href="../mobile-panorama/index.html">
+        <i class="fas fa-envelope tic"></i>
+        <span class="tlabel">contact</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- APPLICATION BAR: max 4 icons + ellipsis overflow -->
+  <div class="appbar">
+    <span class="ab-btn" style="background:var(--accent);border-color:var(--accent)"><i class="fas fa-home" style="color:#fff"></i></span>
+    <a class="ab-btn" href="../index.html"><i class="fas fa-arrow-left"></i></a>
+    <span class="ab-btn"><i class="fas fa-share-alt"></i></span>
+    <span class="ab-btn ab-more"><i class="fas fa-ellipsis-h"></i></span>
+    <div class="ab-menu">
+      <a class="mi" href="../mobile-theme/index.html"><i class="fas fa-palette"></i> theme &amp; accent colour</a>
+      <a class="mi" href="../desktop/index.html"><i class="fas fa-desktop"></i> desktop mockup (swiss)</a>
+      <a class="mi" href="../mobile-panorama/index.html"><i class="fas fa-images"></i> panorama hub</a>
+      <span class="mi"><i class="fas fa-info-circle"></i> mockup — not the live site</span>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/mockup.js"></script>
+</body>
+</html>

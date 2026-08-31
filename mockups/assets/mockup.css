@@ -1,0 +1,105 @@
+/* Mockup shared base — WP7 "Metro" tokens (dark default, blue accent) */
+:root{
+  --accent:#1BA1E2;            /* metro blue — switchable via theme page */
+  --bg:#000; --fg:#fff;
+  --dim:rgba(255,255,255,.65); --faint:rgba(255,255,255,.42);
+  --line:rgba(255,255,255,.16); --panel:rgba(0,0,0,.38); --bar:rgba(0,0,0,.45);
+}
+html[data-theme="light"]{
+  --bg:#fff; --fg:#000;
+  --dim:rgba(0,0,0,.62); --faint:rgba(0,0,0,.42);
+  --line:rgba(0,0,0,.16); --panel:rgba(255,255,255,.78); --bar:rgba(255,255,255,.55);
+}
+/* Selawik — Microsoft's open, metric-compatible Segoe UI (OFL 1.1) */
+@font-face{font-family:'Selawik';src:url('../assets/fonts/selawk.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Selawik';src:url('../assets/fonts/selawkl.woff2') format('woff2');font-weight:300;font-style:normal}
+@font-face{font-family:'Selawik';src:url('../assets/fonts/selawksl.woff2') format('woff2');font-weight:350;font-style:normal}
+@font-face{font-family:'Selawik';src:url('../assets/fonts/selawksb.woff2') format('woff2');font-weight:600;font-style:normal}
+@font-face{font-family:'Selawik';src:url('../assets/fonts/selawkb.woff2') format('woff2');font-weight:700;font-style:normal}
+
+html,body{margin:0;height:100%}
+body{background:#141414;font-family:'Selawik','Segoe UI','Avenir Next',system-ui,sans-serif;display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+/* the phone */
+.device{position:relative;width:100%;max-width:430px;min-height:100dvh;background:var(--bg);color:var(--fg);overflow:hidden;display:flex;flex-direction:column}
+@media(min-width:560px){
+  .device{min-height:calc(100dvh - 48px);margin:24px auto;border-radius:26px;
+    box-shadow:0 0 0 9px #1c1c1c,0 0 0 10px #2e2e2e,0 28px 60px rgba(0,0,0,.55)}
+}
+.ribbon{position:fixed;top:8px;right:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;z-index:99;pointer-events:none}
+/* status bar (clock top-right, icons — per WP7 system tray) */
+.statusbar{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:7px 16px 3px;font-size:13px;color:var(--fg);opacity:.92}
+.statusbar .sig{font-size:12px;letter-spacing:-1px;opacity:.85}
+.statusbar .clock{font-weight:600}
+.scroll-area{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
+/* start tiles */
+.tilegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.tile{position:relative;aspect-ratio:1/1;background:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;transition:transform .12s ease}
+.tile:active{transform:scale(.95)}
+.tile.wide{grid-column:span 2;aspect-ratio:2/1}
+.tile .tic{font-size:42px;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.tile.wide .tic{font-size:56px}
+.tile .tlabel{position:absolute;left:12px;bottom:10px;font-size:13px;font-weight:400;text-transform:lowercase;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.tile .tcount{position:absolute;top:9px;right:13px;font-size:15px;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.tile .tphoto{position:absolute;inset:0;background-size:cover;background-position:center}
+.tile .tshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.58),rgba(0,0,0,.05) 55%)}
+/* application bar */
+.appbar{position:relative;z-index:5;display:flex;justify-content:center;align-items:center;gap:22px;padding:11px 0 calc(13px + env(safe-area-inset-bottom));background:var(--bar)}
+.ab-btn{width:47px;height:47px;border-radius:50%;border:1.6px solid var(--fg);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--fg);background:transparent;transition:background .1s,border-color .1s}
+.ab-btn:active{background:var(--accent);border-color:var(--accent);color:#fff}
+.ab-menu{position:absolute;left:0;right:0;bottom:100%;background:var(--bg);border-top:1px solid var(--line);display:none;padding:6px 0 10px}
+.ab-menu.open{display:block}
+.ab-menu .mi{display:flex;align-items:center;gap:14px;padding:13px 20px;font-size:14px;text-transform:lowercase;color:var(--fg)}
+.ab-menu .mi i{width:22px;text-align:center;color:var(--accent)}
+/* panorama — layered, parallax, snapping */
+.pano{position:relative;height:100%;flex:1;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pano::-webkit-scrollbar{display:none}
+.pano-bg{position:absolute;top:-3%;bottom:-3%;left:-3%;right:-40%;background-image:url('../../images/bg.jpg');background-size:cover;background-position:center;opacity:.5;transform:translateX(calc(var(--px,0px)*-0.3));pointer-events:none}
+html[data-theme="light"] .pano-bg{opacity:.28}
+.pano-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 32%);pointer-events:none}
+html[data-theme="light"] .pano-shade{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0) 34%)}
+.pano-title{position:absolute;top:14px;left:26px;z-index:3;font-size:21px;font-weight:300;text-transform:lowercase;transform:translateX(calc(var(--px,0px)*-0.6));pointer-events:none}
+.psec{flex:0 0 88%;scroll-snap-align:start;position:relative;padding:66px 18px 16px;border-right:1px solid var(--line)}
+.psec:last-child{border-right:none}
+.psec h2{font-size:27px;font-weight:300;text-transform:lowercase;margin:0 0 16px;position:relative;z-index:2}
+.psec .body{position:relative;z-index:2}
+/* content primitives */
+.card{background:var(--panel);border:1px solid var(--line);padding:13px 14px;margin-bottom:10px}
+.card .ct{font-size:14px;margin-bottom:4px}
+.card .cs{font-size:12px;color:var(--dim)}
+.thumbwrap{position:relative;margin-bottom:10px}
+.thumb{aspect-ratio:4/3;background-size:cover;background-position:center;display:block;border:1px solid var(--line)}
+.thumb .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 9px 7px;font-size:11px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.62))}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g2 .thumb{aspect-ratio:1/1}
+.listrow{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid var(--line)}
+.listrow .lic{width:44px;height:44px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none}
+.listrow .lt{font-size:14px;display:block}
+.listrow .ls{font-size:12px;color:var(--dim)}
+.listrow .chev{margin-left:auto;color:var(--faint)}
+/* pivot */
+.pivhead{display:flex;gap:24px;padding:6px 18px 8px;overflow-x:auto;scrollbar-width:none}
+.ph{font-size:17px;font-weight:300;text-transform:lowercase;color:var(--faint);flex:none}
+.ph.active{color:var(--fg)}
+.pivot{display:flex;flex:1;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none}
+.ppage{flex:0 0 100%;scroll-snap-align:start;padding:10px 18px 20px;overflow-y:auto}
+/* generic page chrome */
+.pagetitle{font-size:16px;font-weight:400;text-transform:lowercase;margin:8px 18px 2px}
+.grouplabel{font-size:13px;color:var(--accent);text-transform:lowercase;margin:18px 18px 6px}
+/* theme page */
+.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 14px}
+.choice{aspect-ratio:2/1;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;text-transform:lowercase}
+.choice.dark{background:#000;color:#fff}
+.choice.light{background:#fff;color:#000}
+.choice.sel{outline:3px solid var(--accent);outline-offset:-3px}
+.swatchgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:8px 14px 20px}
+.swatch{aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center}
+.swatch .check{color:#fff;font-size:22px;opacity:0;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.swatch.sel .check{opacity:1}
+.hint{font-size:12px;color:var(--dim);padding:4px 18px;max-width:46ch}
+/* reduced motion: parallax off, snaps off, no tile animation */
+@media(prefers-reduced-motion:reduce){
+  .pano-bg,.pano-title{transform:none!important}
+  .pano,.pivot{scroll-snap-type:none}
+  .tile{transition:none}
+}

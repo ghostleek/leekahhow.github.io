@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — desktop (Swiss / International Typographic Style)</title>
+<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../assets/mockup.css">
+<style>
+/* Swiss grid desktop — same tokens, different expression.
+   Strict 12-column grid, oversized lowercase type, flat accent fields, editorial photography. */
+body{display:block;background:var(--bg);color:var(--fg)}
+.ribbon{color:#777}
+.top{display:flex;align-items:baseline;gap:34px;padding:22px 5vw;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+.brand{font-size:20px;font-weight:600;text-transform:lowercase}
+.brand .dot{color:var(--accent)}
+.top nav{display:flex;gap:22px;margin-left:auto}
+.top nav a{font-size:13px;text-transform:lowercase;color:var(--dim)}
+.top nav a:hover{color:var(--fg)}
+.top .meta{font-size:12px;color:var(--faint);text-transform:lowercase}
+main{max-width:1500px;margin:0 auto}
+.hero{display:grid;grid-template-columns:repeat(12,1fr);gap:0;padding:56px 5vw 40px;align-items:end}
+.hero-text{grid-column:1/6;padding-right:20px}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.hero-text h1{font-size:clamp(56px,8vw,120px);font-weight:300;line-height:.95;text-transform:lowercase;margin:0;letter-spacing:-.02em}
+.hero-text .sub{margin:20px 0 0;font-size:15px;color:var(--dim);max-width:34ch}
+.hero-photo{grid-column:7/13;position:relative;margin:0}
+.hero-photo img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.hero-photo figcaption{font-size:11px;color:var(--faint);text-transform:lowercase;padding-top:8px;display:flex;justify-content:space-between}
+.sec{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:56px 5vw;border-top:1px solid var(--line)}
+.num{grid-column:1/2;color:var(--accent);font-size:13px;font-weight:600}
+.sec h2{grid-column:2/13;font-size:clamp(40px,6vw,84px);font-weight:300;text-transform:lowercase;line-height:1;margin:0 0 8px}
+.sec .cols{grid-column:2/13;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.sec .cols p{font-size:16px;line-height:1.65;color:var(--fg);margin:0;max-width:52ch}
+.edu{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.edu li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.edu li span{color:var(--dim)}
+.edu li b{font-weight:600;text-transform:lowercase}
+.cards3{grid-column:2/13;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{border:1px solid var(--line);border-top:4px solid var(--accent);padding:20px}
+.pcard h3{font-size:17px;font-weight:600;text-transform:lowercase;margin:0 0 8px}
+.pcard p{font-size:13px;color:var(--dim);margin:0;line-height:1.6}
+.gal{grid-column:2/13;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gal figure{margin:0;position:relative}
+.gal img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.gal figcaption{font-size:11px;color:var(--faint);text-transform:lowercase;padding-top:7px}
+.contact-row{grid-column:2/13;display:flex;flex-wrap:wrap;gap:26px;align-items:baseline}
+.mail{font-size:clamp(22px,3.4vw,44px);font-weight:300;text-transform:lowercase;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.socials{display:flex;gap:16px;font-size:15px;color:var(--dim)}
+.socials a:hover{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;padding:26px 5vw;border-top:1px solid var(--line);font-size:12px;color:var(--faint);text-transform:lowercase}
+.notebar{padding:10px 5vw;background:var(--accent);color:#fff;font-size:12px;display:flex;gap:10px;align-items:center}
+@media(max-width:900px){
+  .hero-text{grid-column:1/13;order:2;padding:24px 0 0}
+  .hero-photo{grid-column:1/13;order:1}
+  .sec .cols{grid-template-columns:1fr;gap:24px}
+  .cards3,.gal{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="ribbon">mockup · desktop (swiss)</div>
+
+<div class="notebar"><i class="fas fa-info-circle"></i> desktop is the swiss expression of the same metro tokens — strict grid, oversized type, flat colour. mobile mockups: <a href="../mobile-start/index.html" style="color:#fff;text-decoration:underline">start</a> · <a href="../mobile-panorama/index.html" style="color:#fff;text-decoration:underline">panorama</a> · <a href="../mobile-pivot/index.html" style="color:#fff;text-decoration:underline">pivot</a></div>
+
+<header class="top">
+  <span class="brand">kahhow lee<span class="dot">.</span></span>
+  <nav>
+    <a href="#about">about</a>
+    <a href="#work">work</a>
+    <a href="#photos">photos</a>
+    <a href="#contact">contact</a>
+  </nav>
+  <span class="meta">singapore · sg</span>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="kicker">portfolio — educator · photographer · data · bboy</p>
+      <h1>kahhow<br>lee</h1>
+      <p class="sub">education, photography, data science and dance — one grid, flat colour, no ornament.</p>
+    </div>
+    <figure class="hero-photo">
+      <img src="../../images/pic04.JPG" alt="stingray photographed from above in Tateyama, Japan">
+      <figcaption><span>stingray — tateyama, japan 2019</span><span>01 / 04</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="num">01</div>
+    <h2>about</h2>
+    <div class="cols">
+      <p>Based in singapore — dancer (bboy) at dawn, educator by day, coding at dusk. Interested in photography and design. Previously with the asian development bank (manila), amnesty international (tokyo), staffany, and palmyra vc (jakarta). Reach out for partnerships, internships and school enrichment programmes.</p>
+      <ul class="edu">
+        <li><b>johns hopkins</b><span>msc applied economics · 2017</span></li>
+        <li><b>nyu</b><span>ba economics · 2014–16</span></li>
+        <li><b>nie</b><span>post-graduate diploma in education · 2018–19</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="work">
+    <div class="num">02</div>
+    <h2>work</h2>
+    <div class="cards3">
+      <div class="pcard"><h3>edtech writing</h3><p>six-part medium series on educational technology — twine for interactive storylines, twilio for personalised reminders, replayink on powerpoint.</p></div>
+      <div class="pcard"><h3>data visualisation</h3><p>interactive plotly experiments — gapminder and classroom data, self-hosted with no tracking embeds.</p></div>
+      <div class="pcard"><h3>teaching</h3><p>economics and social studies in singapore — tools and workflows tested with real students.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="photos">
+    <div class="num">03</div>
+    <h2>photos</h2>
+    <div class="gal">
+      <figure><img src="../../images/pic04.JPG" alt="stingray"><figcaption>stingray — tateyama</figcaption></figure>
+      <figure><img src="../../images/pic05.JPG" alt="nudibranch"><figcaption>nudibranch — tioman</figcaption></figure>
+      <figure><img src="../../images/pic01.jpg" alt="east river nyc"><figcaption>east river — nyc</figcaption></figure>
+      <figure><img src="../../images/pic02.jpg" alt="archive photo"><figcaption>archive</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="num">04</div>
+    <h2>contact</h2>
+    <div class="contact-row">
+      <a class="mail" href="mailto:leekahhow@gmail.com">leekahhow@gmail.com</a>
+      <span class="socials">
+        <a href="https://www.linkedin.com/in/leekahhow/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/ghostleek"><i class="fab fa-github"></i></a>
+        <a href="https://ghostleek.medium.com"><i class="fab fa-medium-m"></i></a>
+        <a href="https://www.instagram.com/leekahhow/"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/channel/UCKahvwesizVHcEdXtFcNIuQ"><i class="fab fa-youtube"></i></a>
+      </span>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© kahhow lee</span>
+  <span>sitemap · metro tokens, swiss grid</span>
+</footer>
+
+<script src="../assets/mockup.js"></script>
+</body>
+</html>

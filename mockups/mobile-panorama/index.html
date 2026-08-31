@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — mobile panorama hub (WP7 Metro)</title>
+<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../assets/mockup.css">
+</head>
+<body>
+<div class="ribbon">mockup · mobile-panorama</div>
+
+<div class="device">
+  <div class="statusbar">
+    <span class="sig">▂▄▆</span><span class="sig">◌</span><span class="sig">▮</span>
+    <span class="clock" id="clock">--:--</span>
+  </div>
+
+  <!-- PANORAMA: 4 layers — bg art (slowest) → title (mid) → sections (fastest).
+       Sections peek from the right edge to invite the swipe. Swipe/drag sideways. -->
+  <div class="scroll-area">
+    <div class="pano" id="pano">
+      <div class="pano-bg"></div>
+      <div class="pano-shade"></div>
+      <div class="pano-title">kahhow lee</div>
+
+      <section class="psec">
+        <h2>about</h2>
+        <div class="body">
+          <div class="thumbwrap">
+            <span class="thumb" style="background-image:url('../../images/pic01.jpg')"></span>
+          </div>
+          <div class="card">
+            <div class="ct">based in singapore</div>
+            <div class="cs">dancer (bboy) at dawn, educator by day, coding at dusk. interested in photography and design.</div>
+          </div>
+          <div class="card">
+            <div class="ct">education</div>
+            <div class="cs" style="margin-top:6px">johns hopkins — msc applied economics, 2017</div>
+            <div class="cs">nyu — ba economics, 2014–16</div>
+            <div class="cs">nie — pgde, 2018–19</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="psec">
+        <h2>work</h2>
+        <div class="body">
+          <div class="card">
+            <div class="ct">edtech writing</div>
+            <div class="cs">six-part medium series on educational technology — twine, twilio, replayink</div>
+          </div>
+          <div class="card">
+            <div class="ct">data visualisation</div>
+            <div class="cs">interactive plotly experiments — gapminder and classroom data</div>
+          </div>
+          <div class="card">
+            <div class="ct">teaching</div>
+            <div class="cs">tools and workflows from the classroom, tested with real students</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="psec">
+        <h2>photos</h2>
+        <div class="body">
+          <div class="g2">
+            <div class="thumbwrap"><span class="thumb" style="background-image:url('../../images/pic04.JPG')"><span class="cap">stingray — tateyama, japan</span></span></div>
+            <div class="thumbwrap"><span class="thumb" style="background-image:url('../../images/pic05.JPG')"><span class="cap">nudibranch — tioman, malaysia</span></span></div>
+            <div class="thumbwrap"><span class="thumb" style="background-image:url('../../images/pic01.jpg')"><span class="cap">east river — nyc</span></span></div>
+            <div class="thumbwrap"><span class="thumb" style="background-image:url('../../images/pic02.jpg')"><span class="cap">from the archive</span></span></div>
+          </div>
+          <div class="card"><div class="cs">more diving and street photography in the full gallery (adobe portfolio).</div></div>
+        </div>
+      </section>
+
+      <section class="psec">
+        <h2>contact</h2>
+        <div class="body">
+          <a class="listrow" href="mailto:leekahhow@gmail.com">
+            <span class="lic"><i class="fas fa-envelope"></i></span>
+            <span><span class="lt">email</span><span class="ls">leekahhow@gmail.com</span></span>
+            <span class="chev">›</span>
+          </a>
+          <a class="listrow" href="https://www.linkedin.com/in/leekahhow/">
+            <span class="lic"><i class="fab fa-linkedin-in"></i></span>
+            <span><span class="lt">linkedin</span><span class="ls">in/leekahhow</span></span>
+            <span class="chev">›</span>
+          </a>
+          <a class="listrow" href="https://github.com/ghostleek">
+            <span class="lic"><i class="fab fa-github"></i></span>
+            <span><span class="lt">github</span><span class="ls">ghostleek</span></span>
+            <span class="chev">›</span>
+          </a>
+          <a class="listrow" href="https://ghostleek.medium.com">
+            <span class="lic"><i class="fab fa-medium-m"></i></span>
+            <span><span class="lt">medium</span><span class="ls">writing on edtech</span></span>
+            <span class="chev">›</span>
+          </a>
+          <a class="listrow" href="https://www.instagram.com/leekahhow/">
+            <span class="lic"><i class="fab fa-instagram"></i></span>
+            <span><span class="lt">instagram</span><span class="ls">leekahhow</span></span>
+            <span class="chev">›</span>
+          </a>
+          <a class="listrow" href="https://www.youtube.com/channel/UCKahvwesizVHcEdXtFcNIuQ">
+            <span class="lic"><i class="fab fa-youtube"></i></span>
+            <span><span class="lt">youtube</span><span class="ls">bboy and classroom clips</span></span>
+            <span class="chev">›</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="appbar">
+    <a class="ab-btn" href="../mobile-start/index.html"><i class="fas fa-home"></i></a>
+    <a class="ab-btn" href="../mobile-start/index.html"><i class="fas fa-arrow-left"></i></a>
+    <span class="ab-btn"><i class="fas fa-share-alt"></i></span>
+    <span class="ab-btn ab-more"><i class="fas fa-ellipsis-h"></i></span>
+    <div class="ab-menu">
+      <a class="mi" href="../mobile-theme/index.html"><i class="fas fa-palette"></i> theme &amp; accent colour</a>
+      <a class="mi" href="../desktop/index.html"><i class="fas fa-desktop"></i> desktop mockup (swiss)</a>
+      <a class="mi" href="../mobile-pivot/index.html"><i class="fas fa-columns"></i> work pivot</a>
+      <span class="mi"><i class="fas fa-info-circle"></i> swipe sideways — sections peek to invite pan</span>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/mockup.js"></script>
+</body>
+</html>
