@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — After (proposed redesign)</title>
+<style>
+:root{
+  --canvas:#eef0f3; --label:#4b5360; --accent:#4f7cff; --good:#2e7d4f;
+  --dark:#171b21; --panel:#1f242c; --line:#39414d; --text:#e8ebf0;
+  --photo:repeating-linear-gradient(45deg,#333a45 0 10px,#3a424f 10px 20px);
+  --light:#f6f7f9; --lpanel:#ffffff; --lline:#c9cfd7; --ltext:#232830;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1f242b;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:34px 20px 90px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.sub{color:var(--label);margin:0 0 10px;max-width:68ch}
+a{color:#2557d6}
+.opt{font-size:.85rem;color:var(--label);max-width:68ch;margin:0 0 26px}
+.opt b{color:#2e7d4f}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--label);margin-bottom:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:26px;height:14px;border:1.5px solid var(--line);background:var(--fill,#fff)}
+.sw.photo{background:var(--photo)}
+.sw.dark{background:var(--dark)}
+.sw.accent{background:var(--accent)}
+h2{font-size:.95rem;text-transform:uppercase;letter-spacing:.14em;color:var(--label);margin:38px 0 10px}
+.frame{position:relative;background:#fff;border:1px solid #c6ccd4;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(20,25,35,.08)}
+.chrome{height:32px;background:#e1e5ea;border-bottom:1px solid #ccd2d9;display:flex;align-items:center;gap:6px;padding:0 12px}
+.dot{width:9px;height:9px;border-radius:50%;background:#c2c8d0}
+.url{margin-left:10px;flex:1;max-width:340px;height:18px;background:#fff;border:1px solid #cdd3da;border-radius:9px;font-size:10px;color:#6b7280;display:flex;align-items:center;padding:0 9px}
+.viewport{position:relative}
+.badge{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--good);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;z-index:3}
+.badge.opt{background:#8a6d1f}
+.notes{border:1px solid #c9e0d2;background:#f2faf5;border-radius:10px;padding:18px 22px;margin-top:14px}
+.notes ol{margin:0;padding-left:22px}
+.notes li{margin:7px 0;font-size:.88rem}
+.notes b{color:#1f5c38}
+/* dark site */
+.site{position:absolute;inset:0;background:var(--dark);color:var(--text);overflow:hidden;display:flex;flex-direction:column}
+.site.light{background:var(--light);color:var(--ltext)}
+.nav{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:10px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:inherit;z-index:2}
+.site.light .nav{border-bottom-color:var(--lline)}
+.brand{font-size:11px;font-weight:700;letter-spacing:.02em}
+.navlinks{display:flex;gap:12px;margin-left:auto}
+.nlink{font-size:9.5px;color:var(--text);opacity:.75}
+.site.light .nlink{color:var(--ltext)}
+.toggle{margin-left:8px;width:30px;height:15px;border-radius:8px;border:1px solid var(--line);background:var(--accent);position:relative}
+.toggle:after{content:"";position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:#fff}
+.scroll{flex:1;overflow:hidden;position:relative}
+.hero{padding:44px 26px 30px;text-align:center}
+.eyebrow{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.hname{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.hsub{font-size:11.5px;opacity:.75;margin-top:10px}
+.ctas{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.cta{font-size:10px;padding:8px 18px;border-radius:999px}
+.cta.p{background:var(--accent);color:#fff;font-weight:600}
+.cta.s{border:1px solid var(--line)}
+.site.light .cta.s{border-color:var(--lline)}
+.cue{margin-top:18px;font-size:9px;opacity:.5}
+.sec{padding:16px 26px;border-top:1px solid var(--line)}
+.site.light .sec{border-top-color:var(--lline)}
+.seclabel{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.box{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px}
+.site.light .box{border-color:var(--lline);background:var(--lpanel)}
+.bline{height:7px;border-radius:4px;background:var(--line);margin:7px 0}
+.site.light .bline{background:var(--lline)}
+.bline.w70{width:70%}.bline.w50{width:50%}
+.btitle{font-size:10px;font-weight:600;margin-bottom:6px}
+.bmeta{font-size:8.5px;opacity:.6}
+.photo{height:72px;border-radius:6px;background:var(--photo);border:1px solid var(--line);display:flex;align-items:flex-end;padding:5px;font-size:8px;opacity:.9}
+.site.light .photo{border-color:var(--lline)}
+.viz{height:86px;border:1px dashed var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;opacity:.6}
+.video{height:76px;border-radius:8px;background:linear-gradient(135deg,#2a3140,#222834);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text)}
+.play{width:22px;height:22px;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:#fff;margin-right:6px;font-size:8px}
+.foot{flex:0 0 auto;padding:10px 26px;border-top:1px solid var(--line);font-size:8.5px;opacity:.55;display:flex;gap:10px}
+.site.light .foot{border-top-color:var(--lline)}
+.frames{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.frame.cap{flex:1;min-width:320px}
+.mobile{width:230px;aspect-ratio:9/18;display:inline-block;vertical-align:top}
+.cap{font-size:.8rem;color:var(--label);margin:8px 0 0}
+.next{margin-top:44px;padding-top:18px;border-top:1px solid #ccd2d9;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AFTER — proposed redesign (wireframe)</h1>
+  <p class="sub">A stack-agnostic sketch of the modernized portfolio: real sections instead of hash-modals, dark-first with an optional light mode, and the four content pillars from your tagline given room to breathe.</p>
+  <p class="opt"><b>Scoping note:</b> gold-numbered markers are <b>optional</b> additions you can drop to keep the change smaller; green markers are the core modernization. Nothing here commits you to a tech stack — it can be built as plain HTML or an Astro/Eleventy site.</p>
+  <div class="legend">
+    <span><span class="sw dark"></span> dark UI (default)</span>
+    <span><span class="sw photo"></span> photo area</span>
+    <span><span class="sw accent"></span> accent / CTA</span>
+  </div>
+
+  <h2>Desktop — home, scrolled (dark mode, default)</h2>
+  <div class="frame">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">leekahhow.com — About · Work · Photos · Data · Dance · Contact</span></div>
+    <div class="viewport" style="aspect-ratio:16/14">
+      <div class="site">
+        <div class="nav">
+          <span class="brand">kahhow<span style="color:var(--accent)">.</span></span>
+          <span class="navlinks"><span class="nlink">About</span><span class="nlink">Work</span><span class="nlink">Photos</span><span class="nlink">Contact</span></span>
+          <span class="toggle" title="theme toggle"></span>
+        </div>
+        <div class="scroll">
+          <div class="hero">
+            <div class="eyebrow">educator · photographer · data analyst · bboy</div>
+            <div class="hname">Kahhow Lee</div>
+            <div class="hsub">education, photography, data science and dance — made in Singapore</div>
+            <div class="ctas"><span class="cta p">View work</span><span class="cta s">Get in touch</span></div>
+            <div class="cue">↓ scroll</div>
+          </div>
+          <div class="sec">
+            <div class="seclabel">About</div>
+            <div class="g2">
+              <div class="box">
+                <div class="btitle">Who I am</div>
+                <div class="bline"></div><div class="bline w70"></div><div class="bline w50"></div>
+              </div>
+              <div class="box">
+                <div class="btitle">Timeline</div>
+                <div class="bline"></div><div class="bline w70"></div>
+                <div class="bmeta">JHU MSc · NYU BA · NIE PGDE — styled list instead of table</div>
+              </div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="seclabel">Work / projects</div>
+            <div class="g3">
+              <div class="box"><div class="btitle">EdTech writing</div><div class="bline w70"></div><div class="bmeta">Medium series</div></div>
+              <div class="box"><div class="btitle">Data viz</div><div class="bline w70"></div><div class="bmeta">Plotly / Gapminder</div></div>
+              <div class="box"><div class="btitle">Teaching</div><div class="bline w70"></div><div class="bmeta">classroom tools</div></div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="seclabel">Photography</div>
+            <div class="g4">
+              <div class="photo">stingray · Tateyama</div>
+              <div class="photo">nudibranch · Tioman</div>
+              <div class="photo">NYC · East River</div>
+              <div class="photo">+ gallery →</div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="seclabel">Data + dance <span style="opacity:.5;text-transform:none;letter-spacing:0">(optional)</span></div>
+            <div class="g2">
+              <div class="viz">interactive plotly viz (revive the old embed)</div>
+              <div class="video"><span class="play">▶</span> bboy performance clip</div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="seclabel">Contact</div>
+            <div class="g2">
+              <div class="box"><div class="btitle">Say hi</div><div class="bline w70"></div><div class="bline w70"></div><div class="bmeta">form → Formspree/Netlify Forms, or mailto</div></div>
+              <div class="box"><div class="btitle">Elsewhere</div><div class="bline w50"></div><div class="bmeta">LinkedIn · GitHub · Medium · Instagram · YouTube</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">© Kahhow Lee · sitemap · rss?</div>
+      </div>
+      <span class="badge" style="top:6px;left:10px">1</span>
+      <span class="badge" style="top:6px;left:38%">2</span>
+      <span class="badge" style="top:6px;right:40px">3</span>
+      <span class="badge" style="top:38%;left:10px">4</span>
+      <span class="badge" style="top:52%;left:10px">5</span>
+      <span class="badge opt" style="top:52%;right:10px">6</span>
+      <span class="badge" style="top:66%;left:10px">7</span>
+      <span class="badge opt" style="top:80%;left:10px">8</span>
+      <span class="badge" style="top:88%;left:10px">9</span>
+    </div>
+  </div>
+  <div class="notes">
+    <ol>
+      <li><b>Sticky nav with real sections</b> — each link scrolls to a real <code>&lt;section&gt;</code> with its own URL fragment; browser back/forward and sharing just work.</li>
+      <li><b>Theme toggle</b> — follows <code>prefers-color-scheme</code> by default, manually overridable, persisted in localStorage.</li>
+      <li><b>Hero with one clear goal</b> — big display type and two CTAs instead of four equal links; tagline keeps your four pillars.</li>
+      <li><b>Timeline replaces the table</b> — reflows gracefully on mobile and reads better than a borderless table.</li>
+      <li><b>Project cards</b> — revive the commented-out Medium card + Gapminder plotly embed as first-class content.</li>
+      <li><b>Photography gallery (optional)</b> — 3–4 hero photos with a lightbox; more shots behind a link. Keeps the “Photos” section.</li>
+      <li><b>Semantic landmarks + focus management</b> — header/nav/main/footer, skip-link, visible <code>:focus-visible</code> rings, alt text everywhere.</li>
+      <li><b>Data + Dance sections (optional)</b> — interactive viz and a bboy video; only if you want to invest in those pages.</li>
+      <li><b>Contact that actually contacts</b> — a working form (Formspree/Netlify Forms) or mailto, plus social links; sitemap.xml and robots.txt in the footer.</li>
+    </ol>
+  </div>
+
+  <h2>Desktop — light mode (same layout, token switch)</h2>
+  <div class="frame">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">leekahhow.com — light theme via CSS custom properties</span></div>
+    <div class="viewport" style="aspect-ratio:16/7">
+      <div class="site light">
+        <div class="nav">
+          <span class="brand">kahhow<span style="color:var(--accent)">.</span></span>
+          <span class="navlinks"><span class="nlink">About</span><span class="nlink">Work</span><span class="nlink">Photos</span><span class="nlink">Contact</span></span>
+          <span class="toggle" title="theme toggle"></span>
+        </div>
+        <div class="scroll">
+          <div class="hero" style="padding:30px 26px">
+            <div class="eyebrow">educator · photographer · data analyst · bboy</div>
+            <div class="hname" style="font-size:24px">Kahhow Lee</div>
+            <div class="hsub">education, photography, data science and dance — made in Singapore</div>
+            <div class="ctas"><span class="cta p">View work</span><span class="cta s">Get in touch</span></div>
+          </div>
+          <div class="sec">
+            <div class="g3">
+              <div class="box"><div class="btitle">EdTech writing</div><div class="bline w70"></div></div>
+              <div class="box"><div class="btitle">Data viz</div><div class="bline w70"></div></div>
+              <div class="box"><div class="btitle">Teaching</div><div class="bline w70"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">© Kahhow Lee · sitemap</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <ol start="10">
+      <li><b>One layout, two themes</b> — every colour is a CSS custom property, so light/dark is a token swap, not a second stylesheet. Background photo becomes a subtle tinted header band in light mode.</li>
+    </ol>
+  </div>
+
+  <h2>Mobile (375 px)</h2>
+  <div class="frames">
+    <div>
+      <div class="frame mobile">
+        <div class="viewport" style="height:100%">
+          <div class="site">
+            <div class="nav" style="padding:10px 14px">
+              <span class="brand">kahhow<span style="color:var(--accent)">.</span></span>
+              <span style="margin-left:auto;font-size:12px">☰</span>
+            </div>
+            <div class="scroll">
+              <div class="hero" style="padding:30px 16px">
+                <div class="eyebrow">educator · photographer · data analyst · bboy</div>
+                <div class="hname" style="font-size:21px">Kahhow Lee</div>
+                <div class="hsub" style="font-size:10px">education, photography, data science and dance</div>
+                <div class="ctas"><span class="cta p">View work</span><span class="cta s">Contact</span></div>
+              </div>
+              <div class="sec" style="padding:12px 16px">
+                <div class="seclabel">About</div>
+                <div class="box"><div class="bline"></div><div class="bline w70"></div></div>
+              </div>
+              <div class="sec" style="padding:12px 16px">
+                <div class="seclabel">Work</div>
+                <div class="box" style="margin-bottom:8px"><div class="btitle">EdTech writing</div><div class="bline w70"></div></div>
+                <div class="box" style="margin-bottom:8px"><div class="btitle">Data viz</div><div class="bline w70"></div></div>
+                <div class="box"><div class="btitle">Teaching</div><div class="bline w70"></div></div>
+              </div>
+              <div class="sec" style="padding:12px 16px">
+                <div class="seclabel">Photography</div>
+                <div class="g2">
+                  <div class="photo" style="height:56px">stingray</div>
+                  <div class="photo" style="height:56px">nudibranch</div>
+                  <div class="photo" style="height:56px">NYC</div>
+                  <div class="photo" style="height:56px">+ more</div>
+                </div>
+              </div>
+            </div>
+            <div class="foot" style="padding:8px 16px">© Kahhow Lee</div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Hamburger menu, single-column cards, 2-up photo grid, thumb-sized tap targets.</p>
+    </div>
+    <div>
+      <div class="frame mobile">
+        <div class="viewport" style="height:100%">
+          <div class="site">
+            <div class="nav" style="padding:10px 14px">
+              <span class="brand">kahhow<span style="color:var(--accent)">.</span></span>
+              <span style="margin-left:auto;font-size:12px">✕</span>
+            </div>
+            <div class="scroll" style="display:flex;flex-direction:column;justify-content:center;padding:20px 26px">
+              <div style="font-size:15px;padding:12px 0;border-bottom:1px solid var(--line)">About</div>
+              <div style="font-size:15px;padding:12px 0;border-bottom:1px solid var(--line)">Work</div>
+              <div style="font-size:15px;padding:12px 0;border-bottom:1px solid var(--line)">Photos</div>
+              <div style="font-size:15px;padding:12px 0">Contact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Open menu state — full-screen sheet with large targets; closes with ✕, Escape, or tapping outside.</p>
+    </div>
+  </div>
+  <div class="notes">
+    <ol start="11">
+      <li><b>Mobile-first behaviour</b> — hamburger opens a focus-trapped sheet (not a dead div); photos lazy-load below the fold with <code>srcset</code>; compressed hero image ≈ 150–300 KB instead of 2.8 MB.</li>
+    </ol>
+  </div>
+
+  <p class="next">Back to <a href="before.html">the BEFORE wireframe</a> · <a href="index.html">overview &amp; decision guide</a></p>
+</div>
+</body>
+</html>
