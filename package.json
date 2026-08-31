@@ -1,0 +1,14 @@
+{
+  "name": "leekahhow-portfolio",
+  "private": true,
+  "type": "module",
+  "description": "leekahhow.com — WP7 Metro (mobile) + Swiss grid (desktop) rebuild, with Playwright rendering/functionality tests",
+  "scripts": {
+    "serve": "node tests/server.mjs",
+    "test": "playwright test",
+    "test:install": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

@@ -1,0 +1,28 @@
+name: tests
+
+on:
+  push:
+    branches: [master, modernize-wireframes]
+  pull_request:
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run test suite (desktop / tablet / mobile)
+        run: npx playwright test
+      - name: Upload review screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mockup-screenshots
+          path: tests/screenshots/
+          if-no-files-found: ignore
