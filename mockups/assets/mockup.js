@@ -40,4 +40,63 @@
     update();
     pano.addEventListener('scroll', update, { passive: true });
   }
+
+  /* ── WP7 motion (all skipped under prefers-reduced-motion) ── */
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!REDUCED) {
+
+    /* tilt on press — rotate the control toward the press point */
+    var clearTilt = function () {
+      document.querySelectorAll('.tilted').forEach(function (el) {
+        el.classList.remove('tilted');
+      });
+    };
+    document.addEventListener('pointerdown', function (e) {
+      var t = e.target.closest('.tile,.ab-btn,.choice,.swatch');
+      if (!t) return;
+      var r = t.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      t.style.setProperty('--tx', (-y * 7).toFixed(2) + 'deg');
+      t.style.setProperty('--ty', (x * 7).toFixed(2) + 'deg');
+      t.classList.add('tilted');
+    });
+    document.addEventListener('pointerup', clearTilt);
+    document.addEventListener('pointercancel', clearTilt);
+
+    /* app launch: tiles flip away leaving the tapped tile, then it launches */
+    document.addEventListener('click', function (e) {
+      var tile = e.target.closest('a.tile');
+      if (!tile) return;
+      e.preventDefault();
+      var url = tile.getAttribute('href');
+      document.body.classList.add('launching');
+      tile.classList.add('launched');
+      setTimeout(function () { location.href = url; }, 520);
+    });
+
+    /* turnstile exit for app-bar / menu navigation */
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.appbar a, .ab-menu a');
+      if (!link) return;
+      e.preventDefault();
+      var url = link.getAttribute('href');
+      document.body.classList.add('turning-out');
+      setTimeout(function () { location.href = url; }, 300);
+    });
+
+    /* pivot header slides at half the content rate (authentic pivot feel) */
+    var pivot = document.querySelector('.pivot');
+    if (pivot) {
+      var phs = document.querySelectorAll('.pivhead .ph');
+      var slideHeaders = function () {
+        var w = pivot.clientWidth, x = pivot.scrollLeft;
+        phs.forEach(function (ph, i) {
+          ph.style.transform = 'translateX(' + ((x - i * w) * 0.5) + 'px)';
+        });
+      };
+      pivot.addEventListener('scroll', slideHeaders, { passive: true });
+      slideHeaders();
+    }
+  }
 })();

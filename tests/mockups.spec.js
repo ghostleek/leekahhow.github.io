@@ -176,6 +176,11 @@ test.describe('desktop swiss', () => {
 });
 
 /* ── 7. screenshot artifacts for PR review (one per device type) ── */
+async function settleAnimations(page) {
+  // wait for entrance/turnstile animations so screenshots never catch a mid-swing frame
+  await page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished)));
+}
+
 test('capture review screenshots', async ({ page }, testInfo) => {
   const pj = project(testInfo);
   const shots = {
@@ -195,6 +200,7 @@ test('capture review screenshots', async ({ page }, testInfo) => {
   for (const [url, name, fullPage] of shots[pj] || []) {
     await page.goto(url);
     await page.waitForLoadState('networkidle');
+    await settleAnimations(page);
     await page.screenshot({ path: `tests/screenshots/${pj}-${name}.png`, fullPage });
   }
 });
@@ -205,12 +211,14 @@ test('capture interaction-state screenshots', async ({ page }, testInfo) => {
 
   // panorama mid-swipe: parallax layers separated, next section visible
   await page.goto('/mockups/mobile-panorama/index.html');
+  await settleAnimations(page);
   await page.locator('.pano').evaluate((el) => el.scrollTo({ left: el.clientWidth * 0.9, behavior: 'instant' }));
   await page.waitForFunction(() => document.querySelector('.pano').scrollLeft > 100);
   await page.screenshot({ path: 'tests/screenshots/mobile-panorama-scrolled.png' });
 
   // light theme + teal accent, applied live
   await page.goto('/mockups/mobile-theme/index.html');
+  await settleAnimations(page);
   await page.locator('.swatch[title^="teal"]').click();
   await page.locator('#c-light').click();
   await page.waitForTimeout(60);

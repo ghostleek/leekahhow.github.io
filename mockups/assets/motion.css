@@ -1,0 +1,70 @@
+/* WP7 motion layer — the signature Metro animations, ported to CSS.
+   Every rule lives inside the no-preference media query: with
+   prefers-reduced-motion, the pages are fully static and JS skips
+   its motion paths too. */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  body { perspective: 1400px; }
+
+  /* ── turnstile page transition ────────────────────────────────
+     Forward nav: the incoming page swings in around its LEFT edge,
+     like a turnstile arm — the guide's built-in page transition. */
+  .device {
+    transform-origin: left center;
+    animation: turnstile-in .34s cubic-bezier(.2, .75, .3, 1);
+  }
+  body.turning-out .device {
+    animation: turnstile-out .3s cubic-bezier(.4, 0, .7, .4) forwards;
+  }
+  @keyframes turnstile-in {
+    from { transform: rotateY(78deg) translateX(30px); opacity: .6; }
+    to   { transform: none; opacity: 1; }
+  }
+  @keyframes turnstile-out {
+    to { transform: rotateY(-55deg) translateX(-30px); opacity: .35; }
+  }
+
+  /* ── content fade-rise (swiss desktop + hub) ────────────────── */
+  .hero, .sec, .cards, .foot {
+    animation: fade-rise .45s ease both;
+  }
+  @keyframes fade-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── tilt on press ────────────────────────────────────────────
+     Press feedback tilts the control toward your finger, like the
+     physical press of a WP7 tile. JS writes --tx/--ty per pointer. */
+  .tile, .ab-btn, .choice, .swatch {
+    transform-style: preserve-3d;
+    transition: transform .12s ease;
+  }
+  .tilted {
+    transform: rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)) scale(.97);
+  }
+
+  /* ── app-launch: tiles flip away, tapped tile launches ──────── */
+  .tile { transition: transform .12s ease, opacity .28s ease; }
+  body.launching .tilegrid { perspective: 1000px; }
+  body.launching .tile:not(.launched) {
+    animation: flip-away .36s cubic-bezier(.4, 0, .7, .4) forwards;
+  }
+  body.launching .tile:nth-child(3),
+  body.launching .tile:nth-child(4) { animation-delay: .04s; }
+  body.launching .tile:nth-child(5),
+  body.launching .tile:nth-child(6) { animation-delay: .08s; }
+  .tile.launched {
+    animation: launch-tile .52s cubic-bezier(.2, .7, .3, 1) forwards;
+    z-index: 2;
+  }
+  body.launching .statusbar { animation: flip-away .36s forwards; }
+  @keyframes flip-away {
+    to { transform: rotateY(85deg) scale(.92); opacity: 0; }
+  }
+  @keyframes launch-tile {
+    35% { transform: scale(1.16); }
+    100% { transform: scale(1.03); opacity: 1; }
+  }
+}

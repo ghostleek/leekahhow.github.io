@@ -1,3 +1,5 @@
+@import url('motion.css');
+
 /* Mockup shared base — WP7 "Metro" tokens (dark default, blue accent) */
 :root{
   --accent:#1BA1E2;            /* metro blue — switchable via theme page */
@@ -35,7 +37,7 @@ a{color:inherit;text-decoration:none}
 /* start tiles */
 .tilegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
 .tile{position:relative;aspect-ratio:1/1;background:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;transition:transform .12s ease}
-.tile:active{transform:scale(.95)}
+.tile:active:not(.tilted){transform:scale(.95)}
 .tile.wide{grid-column:span 2;aspect-ratio:2/1}
 .tile .tic{font-size:42px;text-shadow:0 1px 2px rgba(0,0,0,.25)}
 .tile.wide .tic{font-size:56px}
