@@ -123,8 +123,8 @@ def check_cname():
         errors.append("CNAME is missing. Restore it: GitHub Pages uses it for the custom domain.")
         return
     lines = [l.strip() for l in open(path, encoding="utf-8").read().splitlines() if l.strip()]
-    if not lines or not all(re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}", l) for l in lines):
-        errors.append("CNAME must hold bare hostnames only (no scheme or path). Restore it from origin/master.")
+    if len(lines) != 1 or not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}", lines[0]):
+        errors.append("CNAME must hold one bare hostname only (no scheme or path). Restore it from origin/master.")
 
 
 def main():
