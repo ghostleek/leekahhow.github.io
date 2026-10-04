@@ -27,6 +27,25 @@ def is_external(url):
     return bool(s.scheme) or url.startswith("//")
 
 
+def exists_exact(target):
+    """os.path.exists, but case-sensitive even on macOS/Windows filesystems,
+    to match GitHub Pages: every path component must match a real entry."""
+    rel = os.path.relpath(target, ROOT)
+    if rel.startswith(".."):
+        return os.path.exists(target)
+    cur = ROOT
+    for part in rel.split(os.sep):
+        if part == ".":
+            continue
+        try:
+            if part not in os.listdir(cur):
+                return False
+        except (NotADirectoryError, FileNotFoundError):
+            return False
+        cur = os.path.join(cur, part)
+    return True
+
+
 def check_local(src_file, url, what):
     """Report url if it is local and the target file does not exist."""
     url = url.strip()
@@ -39,7 +58,7 @@ def check_local(src_file, url, what):
     target = os.path.normpath(os.path.join(base, path.lstrip("/")))
     if path.endswith("/"):
         target = os.path.join(target, "index.html")
-    if not os.path.exists(target):
+    if not exists_exact(target):
         rel = os.path.relpath(src_file, ROOT)
         errors.append(
             f"{rel}: {what} '{url}' points to a missing file. Fix the path "
