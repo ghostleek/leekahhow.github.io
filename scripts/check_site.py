@@ -124,7 +124,7 @@ def check_cname():
         return
     lines = [l.strip() for l in open(path, encoding="utf-8").read().splitlines() if l.strip()]
     if len(lines) != 1 or not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}", lines[0]):
-        errors.append("CNAME must hold one bare hostname only (no scheme or path). Restore it from origin/master.")
+        errors.append("CNAME must hold exactly one bare hostname (e.g. leekahhow.com): no scheme, path or second line.")
 
 
 def main():
